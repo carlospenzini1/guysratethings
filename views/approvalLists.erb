@@ -1,0 +1,23 @@
+<script src="/js/approve.js"></script>
+ <div onload="loadButtons()">
+     <div class= "row p-3 pt-4">
+         <h1 class ="pt-2">List Approval Page</h1>
+     </div>
+     <div class="py-1 my-primary"></div>
+     <div id ="buttons" name= "buttons" >
+         <%num= 0%>
+         <%for list in @notApp do%>
+	     <% @usr = GUser.find_by(id: list.user_id)%>
+             <div id="userAppr<%=num%>" class = "row p-3" >
+                <div class = "col-6 ">
+                    <h2> <%=list.title%> by <a class="text-muted smpLink" href="/profile/<%=@usr.username%>">@<%=@usr.username%></a></h2>
+                </div>
+                <div class ="col-3" >
+		    <a href="/profile/<%=@usr.username%>/<%=list.unique%>" class="btn btn-info btn-primary" id ="approve<%=num%>" name="<%=list.title%>" role="button">View</a>
+		   
+              </div>
+            </div>
+            <%num+=1%>
+        <%end%>
+    </div>
+</div>

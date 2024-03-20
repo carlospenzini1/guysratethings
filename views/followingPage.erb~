@@ -1,0 +1,21 @@
+<div class="row pt-3"><a href="/profile/<%=@user.username%>" style="text-decoration:none; color:black;"><h1><%=@user.username%>'s Following</h1></a></div>
+<div class="py-1 my-primary"></div>
+<%if @followingList.length == 0%>
+    <div class="row pt-3"><h2>Too Sigma to Follow Anyone</h2></div><br><br><br><br><br><br>
+<%else%>
+    <%for follower in @followingList do%>
+	<div class="row pt-3">
+	    <div class="col-1">
+	      <a href="/profile/<%=follower.username%>" style="text-decoration:none; color:black;">
+		 <%if follower.profilepic.blank? || follower.pic_approved == false%>
+	       	     <img src="/imgs/defaultprofile.png" width="100" height="100" class="profileImg rounded-circle">
+		 <%else%>
+		     <img src="<%=follower.profilepic.url.to_s%>" width="100" height="100" class="profileImg rounded-circle">
+		 <%end%>
+	      </a>
+	    </div>
+	   <div class="col-1 ms-3 mt-3"><a href="/profile/<%=follower.username%>" style="text-decoration:none; color:black;"><h1><%=follower.username%></h1></a></div>
+	</div>
+    <%end%>
+<%end%>
+<br>

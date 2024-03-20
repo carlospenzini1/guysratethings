@@ -1,0 +1,43 @@
+<h2 class= "pt-3 pb-3">Comments</h2>
+
+<div class = "row" >
+   <%if @guser.nil? %>
+   	<div class= "col-md-2 text-center">
+	   <img src="/imgs/defaultprofile.png" class="user-img-comments rounded-circle mr-2 " alt="...">
+        </div>
+    	<div class= "col-md-9">
+             <textarea disabled class="form-control" placeholder="Log in to comment..." rows="3"></textarea>
+    	</div>
+</div>
+    	<br>
+    	<button disabled type="button" class="btn pull-right btn-primary">Post</button>
+    <% else %>
+        <div class= "col-md-2 text-center">
+	   <%if @guser.profilepic.nil? %>
+	   	<a href=<%="/profile/#{@guser.username}" %>><img src="/imgs/defaultprofile.png" class="user-img rounded-circle mr-2 " alt="..."></a>
+	    <% else %>
+	       <a href=<%="/profile/#{@guser.username}" %>><img src="<%= @guser.profilepic.url%>" class="user-img-comments rounded-circle mr-2 " alt="..."></a> 
+	   <%end%>
+    	</div>
+    	<div class= "col-md-9">
+             <textarea class="form-control" placeholder="Write a comment..." rows="3"></textarea>
+    	</div>
+</div>
+    	<br>
+	<button type="button" class="btn pull-right btn-primary">Post</button>
+    
+    
+   <%end %>
+   
+<hr class="featurette-divider">
+
+<div class = "row" >
+    <div class= "col-md-1">
+        <img src="imgs/nickpic.jpg" alt=""  class="user-img rounded-circle mr-2 ">
+    </div>
+    
+    <div class= "col-md-9">
+        <h6>cpen30</h6>
+        <p>No Star Wars?</p>
+    </div>
+</div>

@@ -1,0 +1,79 @@
+# This file is auto-generated from the current state of the database. Instead
+# of editing this file, please use the migrations feature of Active Record to
+# incrementally modify your database, and then regenerate this schema definition.
+#
+# This file is the source Rails uses to define your schema when running `bin/rails
+# db:schema:load`. When creating a new database, `bin/rails db:schema:load` tends to
+# be faster and is potentially less error prone than running all of your
+# migrations from scratch. Old migrations may fail to apply correctly if those
+# migrations use external dependencies or application code.
+#
+# It's strongly recommended that you check this file into your version control system.
+
+ActiveRecord::Schema.define(version: 202211110007) do
+
+  create_table "comment_chains", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.integer "parent_id", null: false
+    t.integer "child_id", null: false
+  end
+
+  create_table "comments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "text", null: false
+    t.datetime "created_at", null: false
+    t.integer "list_id", null: false
+    t.integer "user_id", null: false
+    t.integer "likes", null: false
+  end
+
+  create_table "followers", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.integer "follower_id", null: false
+    t.integer "user_id", null: false
+  end
+
+  create_table "g_users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "fname", null: false
+    t.string "lname", null: false
+    t.string "username", null: false
+    t.string "password", null: false
+    t.string "email", null: false
+    t.string "profilepic"
+    t.string "bio_text"
+    t.datetime "created_at", null: false
+    t.datetime "modified_at", null: false
+    t.boolean "active", default: true, null: false
+    t.boolean "admin", default: false, null: false
+  end
+
+  create_table "images", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "img"
+  end
+
+  create_table "list_items", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.integer "list_id", null: false
+    t.string "description"
+    t.string "title", null: false
+    t.integer "rank", null: false
+    t.integer "value", null: false
+    t.string "item_img"
+  end
+
+  create_table "lists", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "title", null: false
+    t.string "type", null: false
+    t.datetime "created_at", null: false
+    t.datetime "modified_at"
+    t.boolean "active", null: false
+    t.integer "likes", null: false
+  end
+
+  create_table "messages", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.datetime "creation_date", null: false
+    t.string "text", null: false
+    t.integer "recipient_id", null: false
+    t.integer "sender_id", null: false
+    t.boolean "active", null: false
+    t.boolean "read", null: false
+  end
+
+end

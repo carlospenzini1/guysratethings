@@ -1,0 +1,18 @@
+class CreateGusersTable < ActiveRecord::Migration[4.2]
+  def change
+    create_table :g_users do |t|
+      t.string :fname, null: false
+      t.string :lname, null: false
+      t.string :username, null: false
+      t.string :password, null: false
+      t.string :email, null: false
+      t.string :profilepic
+      t.string :bio_text
+      t.datetime :created_at, null: false
+      t.datetime :modified_at, null: false
+      t.boolean :pic_approved, null: false, default: true
+      t.boolean :active, null: false, default: true
+      t.boolean :admin, null: false, default: false
+    end
+  end
+end

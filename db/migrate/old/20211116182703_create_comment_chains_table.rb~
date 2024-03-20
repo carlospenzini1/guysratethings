@@ -1,0 +1,6 @@
+class CreateCommentChainsTable < ActiveRecord::Migration[6.1]
+  def change
+    t.integer :parent_id, null:false
+    t.integer :child_id, null:false
+  end
+end

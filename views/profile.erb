@@ -1,0 +1,116 @@
+<div class = "row pt-3 mt-3">
+    <%if @pfile[:pimg].nil?%>
+	<div class = "col-lg-3" class = "" ><img src="/imgs/defaultprofile.png" width="200" height="200" class ="profileImg rounded-circle"/></div>
+    <%elsif @pfile[:papp] == false%>
+	<div class = "col-lg-3" class = ""><img src="/imgs/defaultprofile.png" width="200" height="200" class ="profileImg rounded-circle" onmouseover= "approvalStatus" data-toggle="popover-hover"  data-content="Profile Pic Awaiting Approval"  /></div>
+    <%else%>
+	<div class = "col-lg-3" class = ""><img src="<%=@pfile[:pimg]%>" width="200" height="200" class ="profileImg rounded-circle" /></div>
+    <%end%>
+    <div class="col-3 pt-5"><a href="/profile/<%=@pfile[:username]%>/display/followers" style="text-decoration:none; color:black"> <h5 name="fol" id="fol" ><%=@pfile[:fc]%> Followers </h5></a></div>
+    <div class="col-3 pt-5"><a href="/profile/<%=@pfile[:username]%>/display/following" style="text-decoration:none; color:black"><h5><%=@pfile[:fingc]%> Following </h5></a></div>
+    <div class="col-3 pt-5"><h5><%=@pfile[:lc]%> Lists </h5></div>
+</div>
+<div class = "username pb-1"><h2>@<%=@pfile[:username]%> </h2>
+    <div class = "bio"><h5><%=@pfile[:bio]%></h5></div>        
+    <div class = "row">
+	<div class = "col-6"><h4>Est: <%=@pfile[:cd].strftime("%m/%d/%Y")%>  Guy Points: <%=@pfile[:guypoints]%> </h4></div>
+	<% if (@guser.nil?)%>
+	    
+	<% elsif (!(@guser.id == @pfile[:id])) %>
+	    <%if @pfile[:isFollowing] %>
+		<div class = "col-4"><button class="btn btn-primary" id ="fB" onclick="follow( '<%=@pfile[:username]%>', false,'<%=@guser.username%>' )" >Unfollow</button></div>
+	    <%else%>
+		<div class = "col-4"><button class="btn btn-primary" id ="fB" onclick="follow( '<%=@pfile[:username]%>', true,'<%=@guser.username%>' )" >Follow</button></div>
+	    <%end%>
+	<% else %>
+	    <div class= "col-6">
+		<button type="button" class="btn btn-primary mx-3 mb-1" data-bs-toggle="modal" data-bs-target="#edit" data-bs-whatever="@\ mdo">Edit Profile</button>
+		<a href="/createlist" style="text-decoration:none;">
+		    <button class="btn btn-primary mx-3 mb-1">Create List</button>
+		</a>
+		<%if @guser.admin %>
+		    <a href="/approval" style="text-decoration:none;">
+			<button class="btn btn-primary mx-3 mb-1">Approval</button>
+		    </a>
+		    <a href="/manageUsers" style="text-decoration:none;">
+			<button class="btn btn-primary mx-3 mb-1">Manage Users</button>
+		    </a>
+		<% end %>
+	    </div>	    
+	<%end%>
+    </div>
+    <div class="modal fade" id="edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+	    <div class="modal-content">
+		<div class="modal-header">
+		    <h5 class="modal-title" id="exampleModalLabel">Edit Profile</h5>
+		    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		</div>
+		<div class="modal-body">
+		    <form id="editPForm"  action="/edit_profile" method="POST" enctype="multipart/form-data" >
+			<%if @pfile[:papp]==false%>
+			    <div class="alert alert-danger" role="alert">
+				Your new profile pic is waiting on approval
+			    </div>
+			<%end%>
+			<div class="mb-5">
+			    <label for="Image" class="form-label">Change Profile Picture</label>
+			    <input class="form-control"  type="file" accept=".jpg,.jpeg,.gif,.png"  name="formFile" id="formFile" onchange="pPreview()" >
+			</div>
+			<%if @pfile[:pimg].nil?%>
+			    <img  id="frame" class="editImg" src="/imgs/defaultprofile.png"  />
+			<%else%>
+			    <img  id="frame" src="<%=@pfile[:pimg]%>" class ="editImg" />
+			<%end%>
+			<div class="mb-3">
+			    <label for="bio-text" class="col-form-label">Bio:</label>
+			    <textarea class="form-control" name="bio"  id="bio"><%=@pfile[:bio]%></textarea>
+			</div>
+		    </form>
+		</div>
+		<div class="modal-footer">
+		    <button type="submit" value = "Submit" class="btn btn-primary" form ="editPForm">Save Changes</button>
+		    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+		</div>
+	    </div>
+	</div>
+    </div>
+
+    <div class="size" id="listSize"></div>
+
+    <br><br>
+    
+    <%if @pfile[:lc] == 0%>
+	<h3>Lists: No List Made</h3>
+    <%else%>
+	<h3>Lists: </h3>
+	<div class="row g-0">
+	    
+	    <%for list in @user_lists%>
+		<%itemList = ListItem.where(list_id: list.id)%>
+		<%imageList = Array.new%>
+		<%for item in itemList%>
+		    <%if !item.itemimg.blank? && imageList.length < 3%>
+			<%imageList.append(item.itemimg.url)%>
+		    <%end%>
+		<%end%>
+		<%if imageList.length < 3%>
+		    <%until imageList.length == 3 do%>
+			<%imageList.append("/imgs/swiss.jpg")%>
+		    <%end%>
+		<%end%>
+		<div class="col d-flex justify-content-center g-list mb-5">
+		    <a href="/profile/<%=@pfile[:username]%>/<%=list.unique%>">
+			<div class = "listTitle"><h6><%=list.title%></h6></div>		 
+			<div class = "grad"><img src = "/imgs/grad.png" width = "321" height = "150"/></div>
+		    </a>
+		    <img src="<%=imageList[0]%>" width="107" height="150" />
+		    <img src="<%=imageList[1]%>" width="107" height="150" />
+		    <img src="<%=imageList[2]%>" width="107" height="150" />
+		</div>
+            <%end%>
+        </div>
+
+    <%end%>
+</div>
+<script src="/js/profile.js"></script>

@@ -1,0 +1,23 @@
+<script src="/js/manage.js"></script>
+<div class="row p-3 text-center">
+    <h2>User Management Page</h2>
+</div>
+<%num=0%>
+<%for buser in @basicUsers do%>
+    <div id="manageUser<%=num%>" class="row mb-2">
+	<div class="col-6">
+	    <h4><a href="/profile/<%=buser.username%>" style="text-decoration:none;">@<%=buser.username%></a></h4>
+	</div>
+	<div class="col-3">
+	    <%if buser.active%>
+		<button type="button" id ="activate<%=num%>" name="<%=buser.username%>" onclick="activateUser('<%=buser.username%>',false, <%=num%>)" class="btn btn-primary">Deactivate User</button>
+	    <%else%>
+		<button type="button" id ="activate<%=num%>" name="<%=buser.username%>" onclick="activateUser('<%=buser.username%>',true,<%=num%>)" class="btn btn-primary">Activate User</button>
+	    <%end%>
+	</div>
+	<div class="col-3">
+	    <button type="button" id="delete<%=num%>" name="<%=buser.username%>" onclick="delUser('<%=buser.username%>', <%=num%>)" class="btn btn-primary delBtn" >Delete User</button>
+	</div>
+    </div>
+    <%num+=1%>
+<%end%>

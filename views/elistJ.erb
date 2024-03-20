@@ -1,0 +1,22 @@
+<div class="container-fluid pt-5 bigbanner">
+        <h1  class="text-center pt-5 m-5 pr-5 pl-5 tit ;" >Which one do you prefer?</h1>
+        <h4  class="text-center pb-5 subtit" > Gain G-Points by answering questions</h4>
+    </div>
+    <div class="row pt-5 pb-5">
+        <div class="col-md-5" style="cursor: pointer;" id="right" onclick="vote(<%=@right.id%>,<%=@left.id%>,1, <%=@right.list_id%>)" >
+            <img src="<%=@right.itemimg.url%>" class="eimg" id= "rightImg" alt="<%=@right.title%>">
+               <br>
+            <h3 class ="text-center" id="rightT" ><%=@right.title%> </h3>
+           </div>
+           <div class="col-md-2 pt-3">
+            <h1  class ="text-center vs " >V.S. </h1>
+            <button type="button" id="mid" onclick="vote(<%=@right.id%>,<%=@left.id%>,0.5, <%=@right.list_id%>)" class="btn btn-primary mx-auto d-block vs2 pb-2 mb-2">I don't know</button>
+	    <a href="/elist/view/<%=@glist.unique.to_s%>" class="btn btn-primary mx-auto d-block vs2 pb-2 mb-2" >View Rankings</a>
+           </div>
+           <div class="col-md-5" style="cursor: pointer;" id="left" onclick="vote(<%=@right.id%>,<%=@left.id%>,0, <%=@right.list_id%>)">
+            <img src="<%=@left.itemimg.url%>" id= "leftImg" class="eimg" alt="<%=@left.title%>">
+               <br>
+            <h3 id="leftT" class ="text-center"><%=@left.title%>  </h3>
+            </div>
+    </div>
+<script src="/js/elist.js"></script>

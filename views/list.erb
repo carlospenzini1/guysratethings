@@ -1,0 +1,110 @@
+<script src="/js/comments.js"></script>
+<script src="/js/modal.js"></script>
+<script src="/js/likes.js"></script>
+<div id="modalDiv" class="darkModal pt-5" onclick="closeModal()">
+    <span id="closex" class="close pt-5" onclick="closeModal()">&times;</span>
+    <img id="modalImage" class="modalContent"/>
+</div>
+<div class="row pt-5">
+    <div class="col-md-10">
+        <h1>
+            <%=@glist.title%>
+            <small class="text-muted">by <a class="text-muted smpLink" href="/profile/<%=@user.username%>">@<%=@user.username%></a></small>
+       	<%if @guser.nil?%>
+	<%else%>
+	    <%if @guser.admin%>
+		    <%if @guser.username == @user.username%>
+			<button type="button" class="btn btn-primary delBtn delThick" id="delBtn">Delete</button>
+		    <%end%>
+		<%end%>
+	<%end%>
+	</h1>
+    </div>
+    <div class="col-md-2 mb-2 d-flex">
+	<%if @glist.approved == false%>
+	    <a href="/listApp/<%=@user.username%>/<%=@glist.unique%>"  class="btn-list btn btn-primary " >Approve</a>
+	    <a  href="/listRej//<%=@user.username%>/<%=@glist.unique%>" class="btn-list btn btn-danger " >Deny </a>
+	<%else%>
+	    <%if @guser.nil?%>
+		<input id="likeBtn" disabled type="image" width="45" height="40" src="/imgs/whiteBump.png">
+	    <%else%>
+		<%if @likeByMe%>
+		    <input id="likeBtn" src="/imgs/purpleBump.png" width="45" height="40" type="image" onclick=<%="listLike(false,'#{@guser.username}')"%>>
+		<%else%>
+		    <input id="likeBtn" src="/imgs/whiteBump.png" width="45" height="40" type="image" onmouseout="listLikeFadeOut()" onmouseover="listLikeFadeIt()" onclick=<%="listLike(true,'#{@guser.username}')"%>>
+		<%end%>
+	    <%end%>
+	    <%#likeDis = number_to_human(@glist.likes, precision: 3)%>
+	    <%#if likeDis.include?("Thousand")%>
+		<%# likeDis = likeDis.split(" ")[0] + "K" %>
+	    <%#elsif likeDis.include?("Million")%>
+		<%# likeDis = likeDis.split(" ")[0] + "M" %>
+	    <%#elsif likeDis.include?("Billion")%>
+		<%# likeDis = likeDis.split(" ")[0] + "B" %>   
+	    <%#end%>
+	    <h4 id="likeDisplay" class="mx-2"><%=@glist.likes%> Likes</h4> 
+	<%end%>
+    </div>
+</div>
+<div class="py-1 my-primary"></div>
+<%for item in @items do%>
+    <div class="row pt-3">
+	<div class="col-md-1">
+            <h2  class=" pt-5"> </h2>
+	</div>
+	<div class="col-md-5 justify-content-center ">
+            <h2  class=""><%=item.rank%>. <%=item.title%> </h2>
+            <%if !(item.itemimg.blank?)%>
+		<img src="<%=item.itemimg.url%>" class="gimg" alt="<%=item.title%>" onclick="displayModal(this)">
+            <%end%>
+            <br>
+	</div>
+	<div class="col-md-5">
+            <h4 class="pt-4"> <%=item.description%> </h4>
+	</div>
+    </div>
+<%end%>
+<h2 class="pt-3 pb-3">Comments</h2>
+<%if @guser.nil? %>
+    <div class="row">
+   	<div class= "col-md-2 text-center">
+	    <img src="/imgs/defaultprofile.png" class="user-img-comments rounded-circle mr-2 " alt="...">
+        </div>
+    	<div class= "col-md-9">
+            <textarea disabled class="form-control" placeholder="Log in to comment..." rows="3"></textarea>
+    	</div>
+	
+    </div>
+    <div class="row justify-content-center">
+	<div class="col-md-3">
+	    <button disabled type="button" class="btn pull-right mt-2 form-control btn-primary">Post</button>
+	</div>
+    </div>
+    
+<% else %>
+    <div class="row">
+	<div class= "col-md-2 text-center">
+	    <%if @guser.profilepic.blank? %>
+		<a id="userImageCmt" href=<%="/profile/#{@guser.username}" %>><img src="/imgs/defaultprofile.png" class="user-img rounded-circle mr-2 " alt="..."></a>
+	    <% else %>
+		<a id="userImageCmt" href=<%="/profile/#{@guser.username}" %>><img src="<%= @guser.profilepic.url%>" class="user-img-comments rounded-circle mr-2 " alt="..."></a> 
+	    <%end%>
+	</div>
+	<div class= "col-md-9">
+	    <textarea id="commentText" name="commentText" required class="form-control" placeholder="Write a comment..." rows="3"></textarea>
+	</div>
+    </div>
+    <div class="row justify-content-center">
+	<div class="col-md-3">
+	    <button type="button"  onclick="comment('<%=@guser.username%>',<%= @guser.admin%>)" class="btn mt-2 form-control pull-right btn-primary">Post</button>
+	</div>
+    </div>
+<%end %>
+<hr class="featurette-divider">
+<div id="commentSection">
+</div>
+<%if !@guser.blank?%>
+    <script>loadComments(0, 10, <%=@guser.admin%>)</script>
+<%else%>
+    <script>loadComments(0, 10, false)</script>
+<%end%>

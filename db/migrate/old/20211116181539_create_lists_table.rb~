@@ -1,0 +1,11 @@
+class CreateListsTable < ActiveRecord::Migration[6.1]
+  def change
+    create_table :lists do |t|
+      t.string :title, null: false
+      t.string :type, null: false
+      t.datetime :created_at, null: false
+      t.boolean :active, null: false
+      t.integer :likes, null: false
+    end
+  end
+end

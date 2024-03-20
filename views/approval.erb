@@ -1,0 +1,26 @@
+<script src="/js/approve.js"></script>
+<div onload="loadButtons()">
+    <div class="row p-3 text-center">
+	<h2>Pic Approval Page</h2>
+    </div>
+     <a href="/listApproval" style="text-decoration:none;">
+          <button class="btn btn-primary mx-3">List Approval</button>
+     </a>
+    <div id ="buttons" name= "buttons" >
+	<%num= 0%>
+	<%for user in @notApp do%>
+	    <div id="userAppr<%=num%>" class = "row p-3" >
+		<div class = "col-6 ">
+		    <img src="<%=user.profilepic.url%>" width="200" height="200" class="profileImg">
+		</div>
+		<div class ="col-3" >
+		    <button type="button" id ="approve<%=num%>" name="<%=user.username%>" onclick="approveP('<%=user.username%>',true, <%=num%>)" class="btn btn-primary"  >Approve</button>
+		</div>
+		<div class ="col-3" >
+		    <button type="button" id ="deny<%=num%>" name="<%=user.username%>" onclick="approveP('<%=user.username%>',false, <%=num%>)" class="btn btn-danger" >Deny </button>
+		</div>
+	    </div>
+	    <% num+=1%>
+	<%end%>
+    </div>
+</div>

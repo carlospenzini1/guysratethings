@@ -1,0 +1,111 @@
+<form id="listForm" action="/list_action" method="POST" enctype="multipart/form-data">
+    <div class="row pt-5">
+	<div class="col-md-10 ">
+            <h1>
+		<input type= "text" placeholder="Title" name="listTitle"  id="listTitle" required> 
+		<small class="text-muted">by <%=@guser.username.to_s %></small>
+            </h1>
+	</div>
+	<div class="col-md-2 pt-2 mb-1">
+            <button  class="btn-list btn btn-primary" type="submit" value ="Submit" form ="listForm" >
+		Create 
+            </button>
+	</div>
+    </div>
+
+    <div class="py-1 my-primary"></div>
+    <div id="items">
+	<div class="row pt-3 mb-2" id="row-item1"> 
+	    <div class="col-lg-6 mb-2 col-justify-content-center">
+		<div class="row">
+		    <div class="col-sm-10">
+			<div class="row">
+			    <div class="col-1">
+				<h2 id="number1">1.</h2>
+			    </div>
+			    <div class="col-11">
+	    			<h2><input class="form-control" type="text" name = "item1_title" id ="item1_title " placeholder="Item" required></h2>
+			    </div>
+			</div>
+		    </div>
+		    <div class="col-sm-2">
+			<button type="button" onclick="deleteItem(this)" id="delete1"  class="btn-list btn btn-primary mb-1">delete</button>
+		    </div>
+		</div>
+		<div class="row">
+		    <div class="col">
+			<input class="form-control" type="file" name="input1" id="input1" accept=".jpg,.jpeg,.gif,.png" onchange="preview()" >
+			<img name="frame1" id="frame1" src="none" class="gimg pt-2 " />
+		    </div>
+		</div>
+	    </div>
+	    <div class="col-lg-6">
+		<h4> <textarea class="form-control" name="textarea1"  id="textarea1" rows="3" placeholder="Enter Description Here"></textarea> </h4>
+	    </div>    
+	</div>
+	<div class="row pt-3 mb-2" id="row-item2"> 
+	    <div class="col-lg-6 mb-2 col-justify-content-center">
+		<div class="row">
+		    <div class="col-sm-10">
+			<div class="row">
+			    <div class="col-1">
+				<h2 id="number2">2.</h2>
+			    </div>
+			    <div class="col-11">
+	    			<h2><input class="form-control" type="text" name = "item2_title" id ="item2_title " placeholder="Item" required></h2>
+			    </div>
+			</div>
+		    </div>
+		    <div class="col-sm-2">
+			<button type="button" onclick="deleteItem(this)" id="delete2"  class="btn-list btn btn-primary mb-1">delete</button>
+		    </div>
+		</div>
+		<div class="row">
+		    <div class="col">
+			<input class="form-control" type="file" name="input2" id="input2" accept=".jpg,.jpeg,.gif,.png" onchange="preview()" >
+			<img name="frame2" id="frame2" src="none" class="gimg pt-2" />
+		    </div>
+		</div>
+	    </div>
+	    <div class="col-lg-6">
+		<h4> <textarea class="form-control" name="textarea2"  id="textarea2" rows="3" placeholder="Enter Description Here"></textarea> </h4>
+	    </div>    
+	</div>
+	<div class="row pt-3 mb-2" id="row-item3"> 
+	    <div class="col-lg-6 mb-2 col-justify-content-center">
+		<div class="row">
+		    <div class="col-sm-10">
+			<div class="row">
+			    <div class="col-1">
+				<h2 id="number3">3.</h2>
+			    </div>
+			    <div class="col-11">
+	    			<h2><input class="form-control" type="text" name = "item3_title" id ="item3_title " placeholder="Item" required></h2>
+			    </div>
+			</div>
+		    </div>
+		    <div class="col-sm-2">
+			<button type="button" onclick="deleteItem(this)" id="delete3"  class="btn-list btn btn-primary mb-1">delete</button>
+		    </div>
+		</div>
+		<div class="row">
+		    <div class="col">
+			<input class="form-control" type="file" name="input3" id="input3" accept=".jpg,.jpeg,.gif,.png" onchange="preview()" >
+			<img name="frame3" id="frame3" src="none" class="gimg pt-2 " />
+		    </div>
+		</div>
+	    </div>
+	    <div class="col-lg-6">
+		<h4> <textarea class="form-control" name="textarea3"  id="textarea3" rows="3" placeholder="Enter Description Here"></textarea> </h4>
+	    </div>    
+	</div>
+    </div>
+    <div class = "row pb-3 justify-content-center" >
+	<div class="col-md-4">
+	    <button type="button" onclick="addField()"  class="form-control btn-list btn btn-primary">Add Item</button>
+	</div>
+    </div>
+    <textarea name="item_count" id="item_count" style="display:none">3</textarea>
+</form>
+<script src= "/js/profile.js" > </script>
+<script>hideImages()</script>

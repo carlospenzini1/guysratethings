@@ -1,0 +1,6 @@
+class CreateImagesTable < ActiveRecord::Migration[6.1]
+  def change
+     create_table :image do |t|
+       t.string :img, null: false
+  end
+end

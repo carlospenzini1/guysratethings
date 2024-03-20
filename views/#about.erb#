@@ -1,0 +1,88 @@
+<div class="container-fluid p-5"style = "background-color: #8c10d8;">
+    <h1  style="font-size:10vw; color:#FFFFFF;"class="text-center pt-5 m-5 pr-5 pl-5;" > About Us </h1>
+    <h4 style="color:#FFFFFF;" class="text-center pb-5" > Connect with the guys behind the computer.</h4>
+</div>
+
+<div class="row">
+    <div class="col-md-4 order-md-1">
+	<h2 style="font-size: 3vw;" class="text-center pt-5">Our Mission and Story</h2>
+    </div>
+    <div class="col-md-8 order-md-2">
+	<p class="p-4">
+	    Our story began at a STEM Club meeting where the idea of creating a
+	    platform to rate male movie actors was thrown around. By the end of the meeting,
+	    GRT chants excited the room full of nerds. Subsequently, we registered our domain
+	    and made the name official, <strong><em>Guys Rate Things</em></strong>. To establish our mission
+	    lets disect the name: <strong>Guys</strong> &#8212; Now you may ask why is this website exclusive
+	    to only men &#8212; we <em>aren't</em>. According to the
+	    <a href="https://www.washingtonpost.com/outlook/2021/07/07/guys-defense-gendered-etymology/" target="_blank">Washington Post</a>,
+	    "Guys" is a casual, non-gendered term. We wanted to create community open to all
+	    and not have a gender limiting and exclusive name. <strong>Rate</strong> &#8212; We plan to
+	    establish a free-speech community were all opinions are debated, yet tolerated.
+	    Lastly, <strong>Things</strong> &#8212; Display your opinions on anything from  cheese to shoes. Guys
+	    Rate Things is a list forum for all to enjoy. Please support us  by sharing this website with your friends and family.
+	</p>
+    </div>
+</div>
+
+<hr class="featurette-divider">
+
+<h2 style="font-size: 3vw;" class=" text-center p-5">Meet the Guys</h2>
+<hr class="featurette-divider">
+<div class="row featurette">
+    <div class="col-md-7">
+	<h2 class="featurette-heading pt-5">Carlos Penzini, <span class="text-muted">Founder</span></h2>
+	<p class="lead ">
+	    Carlos Penzini is a senior at Palmer Trinity School in Miami, Florida. He is currently class president, MUN Co-President, Honor Council Vice-President, and Investment Club President. He was born in Caracas, Venezuela and immigrated to California at the young age of 3. He likes long walks on the beach and chillin' with the guys. He is very interested in Computer Science, Data Science, and Mathematics. He is not sure of his future plans but he is sure he will enjoy them. He prides himself as a Bitcoin Maximalist, free thinker, and an amateur film critic. 
+	</p>
+    </div>
+    <div class="col-md-5">
+	<img src="/imgs/carlos.jpg" class="img-fluid" alt="Carlos Penzini">
+    </div>
+</div>
+
+<hr class="featurette-divider">
+
+<div class="row featurette">
+    <div class="col-md-7 order-md-2">
+	<h2 class="featurette-heading pt-5">Niko Gianulus, <span class="text-muted">Programming Lead</span></h2>
+	<p class="lead">Nikolas Gianulis is a senior at Palmer Trinity School. Part Puerto Rican, Greek, and Mexican, Gianulis is not afraid to mix things around in his life. Nikolas is a fan of all things STEM, especially physics and engineering. Despite knowing several programming languages, Gianulis does not plan on studying Computer Science in college because “there are people like Carlos who are”. The second in command in the GRT Ladder, Gianulis just can’t wait until Carlos “Zuckerbergs” him. All jokes aside, Gianulis believes in the GRT philosophy that anyone and everyone can be a guy.</p>
+    </div>
+    <div class="col-md-5 order-md-1">
+	<img src="/imgs/nikoAboutPhoto.jpg" class="img-fluid" alt="Niko Gianulis">
+    </div>
+</div>
+
+<hr class="featurette-divider m-3">
+
+<div class="row featurette">
+    <div class="col-md-7 ">
+	<h2 class="featurette-heading pt-5">Nick Hernandez, <span class="text-muted">Idea Man</span></h2>
+	<p class="lead">Nick Hernandez is currently enrolled in Palmer Trinity School as a senior. He was born in Miami, Florida but has family in Spain and Cuba. He plays for the Falcon's basketball team and helps lead several clubs. He really likes fried rice and rice in general. When asked what his favorite pastime is, he simply said "coding." What a studious guy. Nick looks forward to making a space where great constructive commentary can take place. 
+	</p>
+    </div>
+    <div class="col-md-5 ">
+	<img src="/imgs/nickAboutPhoto.jpg" class="img-fluid" alt="Nick Hernandez">
+    </div>
+</div>
+<hr class="featurette-divider m-3">
+
+<div class="container col-xl-10 col-xxl-8 px-4 py-5">
+    <div class="row align-items-center g-lg-5 py-5">
+	<div class="col-lg-7 text-center text-lg-start">
+	    <h1 class="display-4 fw-bold lh-1 mb-3">Think you have the skills to join the team</h1>
+	    <p class="col-lg-10 fs-4">Submit your email and we will contact you for an interview and a form to fill out. You will not be payed. </p>
+	</div>
+	<div class="col-md-10 mx-auto col-lg-5">
+	    <form method='POST' action='/recruit' class="p-4 p-md-5 border rounded-3 bg-light">
+		<div class="form-floating mb-3">
+		    <input type="email" class="form-control" name = "email" id="floatingInput" placeholder="name@example.com">
+		    <label for="floatingInput">Email address</label>
+		</div>
+		<button class="w-100 btn btn-lg btn-primary" type="submit">Sign up</button>
+		<hr class="my-4">
+		<small class="text-muted">By clicking Sign up, you agree to the terms of use.</small>
+	    </form>
+	</div>
+    </div>
+</div>

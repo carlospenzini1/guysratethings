@@ -1,0 +1,35 @@
+<div class="row pt-5">
+     <div class="col-md-8 ">
+         <h1>
+            <%=@glist.title%>
+            <small class="text-muted">by <a class="text-muted smpLink" >@guys</a></small>
+        </h1>
+     </div>
+     <div class="col-md-2 mb-2">
+	 <a href="/elist/join/<%=@glist.unique.to_s%>" class="btn btn-primary">Vote</a>
+	 </div>
+    <div class="col-md-2 mb-2">
+        <a href="/profile/<%=@user.username%>/<%=@glist.unique.to_s%>" class="btn btn-primary">Original List</a>
+    </div>
+</div>
+<div class="py-1 my-primary"></div>
+<% place = 1%>
+<%for item in @items do%>
+    <div class="row pt-3">
+        <div class="col-md-1">
+            <h2  class=" pt-5"> </h2>
+        </div>
+        <div class="col-md-5 justify-content-center ">
+            <h2  class=""><%=place.to_s%>. <%=item.title%> </h2>
+            <%if !(item.itemimg.blank?)%>
+                <img src="<%=item.itemimg.url%>" class="gimg" alt="<%=item.title%>" onclick="displayModal(this)">
+            <%end%>
+            <br>
+        </div>
+        <div class="col-md-5">
+            <h4 class="pt-4">Elo rank: <%=item.value.to_s%> </h4>
+        </div>
+    </div>
+    <%place = place +1%>
+<%end%>
+</div>
